@@ -10,6 +10,7 @@ use App\Models\Gang;
 use App\Models\IuranWarga;
 use App\Models\JenisIuran;
 use App\Models\Warga;
+use App\Notifications\IuranNotification;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -82,7 +83,9 @@ class IuranWargaController extends Controller
             return back()->withInput()->with('error', 'Tagihan untuk warga ini pada periode dan jenis iuran tersebut sudah ada.');
         }
 
-        IuranWarga::create($validated);
+        $iuran = IuranWarga::create($validated);
+
+        $this->kirimNotifikasi($iuran, 'tagihan_baru');
 
         return redirect()->route('admin.iuran-warga.index')
             ->with('success', 'Tagihan iuran warga berhasil dibuat.');
@@ -175,7 +178,7 @@ class IuranWargaController extends Controller
                     continue;
                 }
 
-                IuranWarga::create([
+                $iuranBaru = IuranWarga::create([
                     'warga_id' => $warga->id,
                     'jenis_iuran_id' => $validated['jenis_iuran_id'],
                     'periode' => $validated['periode'],
@@ -184,6 +187,8 @@ class IuranWargaController extends Controller
                     'tanggal_pembayaran' => null,
                     'catatan' => 'Tagihan generate massal periode '.$validated['periode'],
                 ]);
+
+                $this->kirimNotifikasi($iuranBaru, 'tagihan_baru');
 
                 $berhasil++;
             }
@@ -208,6 +213,8 @@ class IuranWargaController extends Controller
             'catatan' => $request->input('catatan', $iuranWarga->catatan ?? 'Lunas diverifikasi pengurus'),
         ]);
 
+        $this->kirimNotifikasi($iuranWarga, 'pembayaran_sukses');
+
         return back()->with('success', 'Pembayaran iuran berhasil dicatat.');
     }
 
@@ -223,5 +230,28 @@ class IuranWargaController extends Controller
         ]);
 
         return back()->with('success', 'Status pembayaran berhasil dibatalkan kembali ke Menunggu.');
+    }
+
+    /**
+     * Kirim notifikasi database ke akun warga terkait tanpa duplikasi.
+     */
+    protected function kirimNotifikasi(IuranWarga $iuran, string $type): void
+    {
+        $warga = $iuran->warga ?? Warga::find($iuran->warga_id);
+        $user = $warga?->user;
+
+        if (! $user) {
+            return;
+        }
+
+        $alreadySent = $user->notifications()
+            ->where('data->iuran_warga_id', $iuran->id)
+            ->where('data->type', $type)
+            ->exists();
+
+        if (! $alreadySent) {
+            $iuran->loadMissing('jenisIuran');
+            $user->notify(new IuranNotification($iuran, $type));
+        }
     }
 }

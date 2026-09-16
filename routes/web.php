@@ -10,10 +10,12 @@ use App\Http\Controllers\Admin\WargaController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\Warga\DashboardController as WargaDashboardController;
 use App\Http\Controllers\Warga\IuranController as WargaIuranController;
+use App\Http\Controllers\Warga\NotificationController as WargaNotificationController;
+use App\Http\Controllers\Warga\ProfilController as WargaProfilController;
 use Illuminate\Support\Facades\Route;
 
-// Redirect halaman utama ke login
-Route::get('/', fn () => redirect()->route('login'));
+// Halaman Depan / Landing Page Welcome
+Route::get('/', fn () => view('welcome'))->name('welcome');
 
 // Route Autentikasi (Tamu / Guest)
 Route::middleware('guest')->group(function () {
@@ -50,7 +52,9 @@ Route::middleware(['auth', 'role:admin'])
         // CRUD Transaksi Iuran Warga
         Route::resource('iuran-warga', IuranWargaController::class);
 
-        // Laporan Keuangan IPL
+        // Laporan Keuangan IPL & Ekspor
+        Route::get('/laporan/export-excel', [LaporanController::class, 'exportExcel'])->name('laporan.export-excel');
+        Route::get('/laporan/export-pdf', [LaporanController::class, 'exportPdf'])->name('laporan.export-pdf');
         Route::get('/laporan', [LaporanController::class, 'index'])->name('laporan.index');
     });
 
@@ -61,4 +65,13 @@ Route::middleware(['auth', 'role:warga'])
     ->group(function () {
         Route::get('/dashboard', [WargaDashboardController::class, 'index'])->name('dashboard');
         Route::get('/iuran', [WargaIuranController::class, 'index'])->name('iuran.index');
+        Route::get('/iuran/{iuranWarga}', [WargaIuranController::class, 'show'])->name('iuran.show');
+
+        // Profil Warga
+        Route::get('/profil', [WargaProfilController::class, 'show'])->name('profil.show');
+        Route::put('/profil', [WargaProfilController::class, 'update'])->name('profil.update');
+
+        // Notifikasi Warga
+        Route::post('/notifikasi/{id}/baca', [WargaNotificationController::class, 'markAsRead'])->name('notifikasi.baca');
+        Route::post('/notifikasi/baca-semua', [WargaNotificationController::class, 'markAllAsRead'])->name('notifikasi.baca-semua');
     });

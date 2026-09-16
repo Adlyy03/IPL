@@ -24,11 +24,12 @@ class AuthAndRoleTest extends TestCase
         $response->assertSee('Masuk ke Sistem IPL');
     }
 
-    public function test_tamu_diarahkan_ke_login_saat_akses_halaman_utama(): void
+    public function test_halaman_utama_dapat_diakses_tamu(): void
     {
         $response = $this->get('/');
 
-        $response->assertRedirect('/login');
+        $response->assertStatus(200);
+        $response->assertSee('IPL');
     }
 
     public function test_login_gagal_dengan_kredensial_salah(): void

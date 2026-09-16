@@ -23,12 +23,17 @@ class DashboardController extends Controller
 
         $periodeBulanIni = now()->format('Y-m');
         $riwayatIuran = collect();
+        $tagihanBelumBayar = collect();
+
         $ringkasanWarga = [
             'nama_warga' => $warga?->nama_lengkap ?? $user->name,
             'blok_dan_nomor' => $warga ? ($warga->blok->nama_blok.' No. '.$warga->blok->nomor_rumah) : '-',
             'nama_gang' => $warga?->blok?->gang?->nama_gang ?? '-',
+            'total_tagihan' => 0,
             'total_tagihan_belum_dibayar' => 0,
             'total_tagihan_sudah_dibayar' => 0,
+            'nominal_belum_dibayar' => 0,
+            'nominal_sudah_dibayar' => 0,
             'nominal_tagihan_bulan_berjalan' => 0,
         ];
 
@@ -40,13 +45,13 @@ class DashboardController extends Controller
                 ->orderByDesc('id')
                 ->get();
 
-            $ringkasanWarga['total_tagihan_belum_dibayar'] = $riwayatIuran
-                ->where('status_pembayaran', 'menunggu_pembayaran')
-                ->count();
+            $tagihanBelumBayar = $riwayatIuran->where('status_pembayaran', 'menunggu_pembayaran');
 
-            $ringkasanWarga['total_tagihan_sudah_dibayar'] = $riwayatIuran
-                ->where('status_pembayaran', 'lunas')
-                ->count();
+            $ringkasanWarga['total_tagihan'] = $riwayatIuran->count();
+            $ringkasanWarga['total_tagihan_belum_dibayar'] = $tagihanBelumBayar->count();
+            $ringkasanWarga['total_tagihan_sudah_dibayar'] = $riwayatIuran->where('status_pembayaran', 'lunas')->count();
+            $ringkasanWarga['nominal_belum_dibayar'] = $tagihanBelumBayar->sum('nominal');
+            $ringkasanWarga['nominal_sudah_dibayar'] = $riwayatIuran->where('status_pembayaran', 'lunas')->sum('nominal');
 
             $ringkasanWarga['nominal_tagihan_bulan_berjalan'] = $riwayatIuran
                 ->where('periode', $periodeBulanIni)
@@ -57,6 +62,7 @@ class DashboardController extends Controller
             'user',
             'warga',
             'riwayatIuran',
+            'tagihanBelumBayar',
             'ringkasanWarga',
             'periodeBulanIni'
         ));
