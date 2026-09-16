@@ -23,6 +23,7 @@ class Blok extends Model
         'nama_blok',
         'nomor_rumah',
         'keterangan',
+        'status',
     ];
 
     /**

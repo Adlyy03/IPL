@@ -58,69 +58,75 @@
                 </a>
 
                 <!-- Gang -->
-                <a href="#" class="flex items-center justify-between px-3 py-2.5 text-sm font-medium rounded-lg text-slate-400 hover:bg-slate-800/60 hover:text-slate-200 transition">
+                <a href="{{ route('admin.gang.index') }}"
+                   class="flex items-center justify-between px-3 py-2.5 text-sm font-medium rounded-lg transition {{ request()->routeIs('admin.gang.*') ? 'bg-indigo-600 text-white shadow-sm' : 'text-slate-300 hover:bg-slate-800 hover:text-white' }}">
                     <span class="flex items-center">
-                        <svg class="w-5 h-5 mr-3 text-slate-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <svg class="w-5 h-5 mr-3 {{ request()->routeIs('admin.gang.*') ? 'text-white' : 'text-slate-400' }}" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7" />
                         </svg>
                         Gang
                     </span>
-                    <span class="text-[10px] bg-slate-800 text-slate-400 px-1.5 py-0.5 rounded">Master</span>
+                    <span class="text-[10px] {{ request()->routeIs('admin.gang.*') ? 'bg-indigo-700 text-indigo-100' : 'bg-slate-800 text-slate-400' }} px-1.5 py-0.5 rounded">Master</span>
                 </a>
 
                 <!-- Blok & Rumah -->
-                <a href="#" class="flex items-center justify-between px-3 py-2.5 text-sm font-medium rounded-lg text-slate-400 hover:bg-slate-800/60 hover:text-slate-200 transition">
+                <a href="{{ route('admin.blok.index') }}"
+                   class="flex items-center justify-between px-3 py-2.5 text-sm font-medium rounded-lg transition {{ request()->routeIs('admin.blok.*') ? 'bg-indigo-600 text-white shadow-sm' : 'text-slate-300 hover:bg-slate-800 hover:text-white' }}">
                     <span class="flex items-center">
-                        <svg class="w-5 h-5 mr-3 text-slate-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <svg class="w-5 h-5 mr-3 {{ request()->routeIs('admin.blok.*') ? 'text-white' : 'text-slate-400' }}" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
                         </svg>
                         Blok & Rumah
                     </span>
-                    <span class="text-[10px] bg-slate-800 text-slate-400 px-1.5 py-0.5 rounded">Master</span>
+                    <span class="text-[10px] {{ request()->routeIs('admin.blok.*') ? 'bg-indigo-700 text-indigo-100' : 'bg-slate-800 text-slate-400' }} px-1.5 py-0.5 rounded">Master</span>
                 </a>
 
                 <!-- Warga -->
-                <a href="#" class="flex items-center justify-between px-3 py-2.5 text-sm font-medium rounded-lg text-slate-400 hover:bg-slate-800/60 hover:text-slate-200 transition">
+                <a href="{{ route('admin.warga.index') }}"
+                   class="flex items-center justify-between px-3 py-2.5 text-sm font-medium rounded-lg transition {{ request()->routeIs('admin.warga.*') ? 'bg-indigo-600 text-white shadow-sm' : 'text-slate-300 hover:bg-slate-800 hover:text-white' }}">
                     <span class="flex items-center">
-                        <svg class="w-5 h-5 mr-3 text-slate-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <svg class="w-5 h-5 mr-3 {{ request()->routeIs('admin.warga.*') ? 'text-white' : 'text-slate-400' }}" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z" />
                         </svg>
                         Warga
                     </span>
-                    <span class="text-[10px] bg-slate-800 text-slate-400 px-1.5 py-0.5 rounded">Master</span>
+                    <span class="text-[10px] {{ request()->routeIs('admin.warga.*') ? 'bg-indigo-700 text-indigo-100' : 'bg-slate-800 text-slate-400' }} px-1.5 py-0.5 rounded">Master</span>
                 </a>
 
                 <!-- Jenis Iuran -->
-                <a href="#" class="flex items-center justify-between px-3 py-2.5 text-sm font-medium rounded-lg text-slate-400 hover:bg-slate-800/60 hover:text-slate-200 transition">
+                <a href="{{ route('admin.jenis-iuran.index') }}"
+                   class="flex items-center justify-between px-3 py-2.5 text-sm font-medium rounded-lg transition {{ request()->routeIs('admin.jenis-iuran.*') ? 'bg-indigo-600 text-white shadow-sm' : 'text-slate-300 hover:bg-slate-800 hover:text-white' }}">
                     <span class="flex items-center">
-                        <svg class="w-5 h-5 mr-3 text-slate-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <svg class="w-5 h-5 mr-3 {{ request()->routeIs('admin.jenis-iuran.*') ? 'text-white' : 'text-slate-400' }}" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 7h.01M7 3h5c.512 0 1.024.195 1.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A1.994 1.994 0 013 12V7a4 4 0 014-4z" />
                         </svg>
                         Jenis Iuran
                     </span>
-                    <span class="text-[10px] bg-slate-800 text-slate-400 px-1.5 py-0.5 rounded">Master</span>
+                    <span class="text-[10px] {{ request()->routeIs('admin.jenis-iuran.*') ? 'bg-indigo-700 text-indigo-100' : 'bg-slate-800 text-slate-400' }} px-1.5 py-0.5 rounded">Master</span>
                 </a>
 
                 <!-- Iuran Warga -->
-                <a href="#" class="flex items-center justify-between px-3 py-2.5 text-sm font-medium rounded-lg text-slate-400 hover:bg-slate-800/60 hover:text-slate-200 transition">
+                <a href="{{ route('admin.iuran-warga.index') }}"
+                   class="flex items-center justify-between px-3 py-2.5 text-sm font-medium rounded-lg transition {{ request()->routeIs('admin.iuran-warga.*') ? 'bg-indigo-600 text-white shadow-sm' : 'text-slate-300 hover:bg-slate-800 hover:text-white' }}">
                     <span class="flex items-center">
-                        <svg class="w-5 h-5 mr-3 text-slate-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <svg class="w-5 h-5 mr-3 {{ request()->routeIs('admin.iuran-warga.*') ? 'text-white' : 'text-slate-400' }}" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 9V7a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2m2 4h10a2 2 0 002-2v-6a2 2 0 00-2-2H9a2 2 0 00-2 2v6a2 2 0 002 2zm7-5a2 2 0 11-4 0 2 2 0 014 0z" />
                         </svg>
                         Iuran Warga
                     </span>
-                    <span class="text-[10px] bg-slate-800 text-slate-400 px-1.5 py-0.5 rounded">Transaksi</span>
+                    <span class="text-[10px] {{ request()->routeIs('admin.iuran-warga.*') ? 'bg-indigo-700 text-indigo-100' : 'bg-slate-800 text-slate-400' }} px-1.5 py-0.5 rounded">Transaksi</span>
                 </a>
 
                 <!-- Laporan -->
-                <a href="#" class="flex items-center justify-between px-3 py-2.5 text-sm font-medium rounded-lg text-slate-400 hover:bg-slate-800/60 hover:text-slate-200 transition">
+                <a href="{{ route('admin.laporan.index') }}"
+                   class="flex items-center justify-between px-3 py-2.5 text-sm font-medium rounded-lg transition {{ request()->routeIs('admin.laporan.*') ? 'bg-indigo-600 text-white shadow-sm' : 'text-slate-300 hover:bg-slate-800 hover:text-white' }}">
                     <span class="flex items-center">
-                        <svg class="w-5 h-5 mr-3 text-slate-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <svg class="w-5 h-5 mr-3 {{ request()->routeIs('admin.laporan.*') ? 'text-white' : 'text-slate-400' }}" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 17v-2m3 2v-4m3 4v-6m2 10H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
                         </svg>
                         Laporan
                     </span>
-                    <span class="text-[10px] bg-slate-800 text-slate-400 px-1.5 py-0.5 rounded">Rekap</span>
+                    <span class="text-[10px] {{ request()->routeIs('admin.laporan.*') ? 'bg-indigo-700 text-indigo-100' : 'bg-slate-800 text-slate-400' }} px-1.5 py-0.5 rounded">Rekap</span>
                 </a>
             @else
                 <div class="px-3 pb-2 text-[11px] font-bold uppercase tracking-wider text-slate-400">Portal Warga</div>
@@ -135,21 +141,12 @@
                 </a>
 
                 <!-- Iuran Saya -->
-                <a href="#tabel-iuran"
-                   class="flex items-center px-3 py-2.5 text-sm font-medium rounded-lg text-slate-400 hover:bg-slate-800/60 hover:text-slate-200 transition">
-                    <svg class="w-5 h-5 mr-3 text-slate-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <a href="{{ route('warga.iuran.index') }}"
+                   class="flex items-center px-3 py-2.5 text-sm font-medium rounded-lg transition {{ request()->routeIs('warga.iuran.*') ? 'bg-indigo-600 text-white shadow-sm' : 'text-slate-300 hover:bg-slate-800 hover:text-white' }}">
+                    <svg class="w-5 h-5 mr-3 {{ request()->routeIs('warga.iuran.*') ? 'text-white' : 'text-slate-400' }}" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 9V7a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2m2 4h10a2 2 0 002-2v-6a2 2 0 00-2-2H9a2 2 0 00-2 2v6a2 2 0 002 2zm7-5a2 2 0 11-4 0 2 2 0 014 0z" />
                     </svg>
                     Iuran Saya
-                </a>
-
-                <!-- Profil -->
-                <a href="#data-profil"
-                   class="flex items-center px-3 py-2.5 text-sm font-medium rounded-lg text-slate-400 hover:bg-slate-800/60 hover:text-slate-200 transition">
-                    <svg class="w-5 h-5 mr-3 text-slate-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
-                    </svg>
-                    Profil
                 </a>
             @endif
         </nav>
@@ -209,7 +206,60 @@
 
         <!-- Area Content -->
         <main class="flex-1 overflow-y-auto p-4 sm:p-6 lg:p-8">
-            <div class="max-w-7xl mx-auto">
+            <div class="max-w-7xl mx-auto space-y-6">
+                <!-- Flash Notification Sukses -->
+                @if (session('success'))
+                    <div class="p-4 rounded-xl bg-emerald-50 border border-emerald-200 text-emerald-800 flex items-start gap-3 shadow-sm">
+                        <svg class="w-5 h-5 text-emerald-600 mt-0.5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                        </svg>
+                        <div class="text-sm font-medium leading-relaxed">
+                            {{ session('success') }}
+                        </div>
+                    </div>
+                @endif
+
+                <!-- Flash Notification Error / Gagal -->
+                @if (session('error'))
+                    <div class="p-4 rounded-xl bg-rose-50 border border-rose-200 text-rose-800 flex items-start gap-3 shadow-sm">
+                        <svg class="w-5 h-5 text-rose-600 mt-0.5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                        </svg>
+                        <div class="text-sm font-medium leading-relaxed">
+                            {{ session('error') }}
+                        </div>
+                    </div>
+                @endif
+
+                <!-- Flash Notification Warning -->
+                @if (session('warning'))
+                    <div class="p-4 rounded-xl bg-amber-50 border border-amber-200 text-amber-800 flex items-start gap-3 shadow-sm">
+                        <svg class="w-5 h-5 text-amber-600 mt-0.5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+                        </svg>
+                        <div class="text-sm font-medium leading-relaxed">
+                            {{ session('warning') }}
+                        </div>
+                    </div>
+                @endif
+
+                <!-- Error Validasi Global -->
+                @if ($errors->any())
+                    <div class="p-4 rounded-xl bg-rose-50 border border-rose-200 text-rose-800 shadow-sm">
+                        <div class="flex items-center gap-2 mb-2">
+                            <svg class="w-5 h-5 text-rose-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                            </svg>
+                            <span class="text-sm font-bold">Terjadi kesalahan input:</span>
+                        </div>
+                        <ul class="list-disc list-inside text-xs space-y-1 text-rose-700">
+                            @foreach ($errors->all() as $error)
+                                <li>{{ $error }}</li>
+                            @endforeach
+                        </ul>
+                    </div>
+                @endif
+
                 @yield('content')
             </div>
         </main>

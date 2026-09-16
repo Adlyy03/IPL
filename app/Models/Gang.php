@@ -20,6 +20,7 @@ class Gang extends Model
     protected $fillable = [
         'nama_gang',
         'keterangan',
+        'status',
     ];
 
     /**
