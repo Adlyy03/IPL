@@ -6,9 +6,11 @@ use App\Models\Blok;
 use App\Models\Gang;
 use App\Models\IuranWarga;
 use App\Models\JenisIuran;
+use App\Models\User;
 use App\Models\Warga;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\Hash;
 
 class DatabaseSeeder extends Seeder
 {
@@ -230,6 +232,25 @@ class DatabaseSeeder extends Seeder
             'status_pembayaran' => 'menunggu_pembayaran',
             'tanggal_pembayaran' => null,
             'catatan' => 'Menunggu konfirmasi pembayaran',
+        ]);
+
+        // 6. Seeder Akun Pengguna (Users)
+        // Akun Admin
+        User::create([
+            'name' => 'Administrator IPL',
+            'email' => 'admin@ipl.test',
+            'password' => Hash::make('password'),
+            'role' => 'admin',
+            'warga_id' => null,
+        ]);
+
+        // Akun Warga (terhubung ke data Warga Budi Santoso)
+        User::create([
+            'name' => $wargaBudi->nama_lengkap,
+            'email' => 'warga@ipl.test',
+            'password' => Hash::make('password'),
+            'role' => 'warga',
+            'warga_id' => $wargaBudi->id,
         ]);
     }
 }

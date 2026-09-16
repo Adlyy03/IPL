@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 
 class Warga extends Model
 {
@@ -52,5 +53,13 @@ class Warga extends Model
     public function iuranWargas(): HasMany
     {
         return $this->hasMany(IuranWarga::class, 'warga_id');
+    }
+
+    /**
+     * Relasi ke data Akun Pengguna (User).
+     */
+    public function user(): HasOne
+    {
+        return $this->hasOne(User::class, 'warga_id');
     }
 }
